@@ -102,4 +102,4 @@ void GevrekLogInternal(GevrekLogSeverity severity, const char* file, int line, c
     fprintf(outputStream, "[%s] [%s:%d] %s\n", severityStr, file, line, messageBuffer);
 }
 
-#endif // _DEBUG
+#endif // GEVREK_DEBUG
