@@ -90,7 +90,7 @@ GevrekLog uses CMake. You can build it as a static library:
 
     // Checking errors from any thread safely:
     if (GevrekGetLastError() != GEVREK_ERROR_NONE) {
-        printf("Error: %s\n", GevrekGetLastErrorMessage());
+        GEVREK_LOG(GEVREK_LOG_ERROR, GevrekGetLastErrorMessage());
     }
 
 ---
