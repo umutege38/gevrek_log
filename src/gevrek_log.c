@@ -3,12 +3,14 @@
 #include <stdarg.h>
 #include <time.h>
 
-_Thread_local static GevrekError s_lastError = GEVREK_ERROR_NONE;
-_Thread_local static char        s_lastErrorMsg[256] = "No error";
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
+#define GEVREK_THREAD_LOCAL _Thread_local
+#else
+#define GEVREK_THREAD_LOCAL
+#endif
 
-static GevrekLogSeverity   s_currentLogLevel = GEVREK_LOG_INFO;
-static GevrekLogCallback   s_logCallback = NULL;
-static void* s_logUserContext = NULL;
+static GEVREK_THREAD_LOCAL GevrekError s_lastError = GEVREK_ERROR_NONE;
+static GEVREK_THREAD_LOCAL char        s_lastErrorMsg[256] = "No error";
 
 void GevrekSetError(GevrekError error, const char* message) {
     s_lastError = error;
@@ -47,10 +49,15 @@ const char* GevrekGetErrorString(GevrekError error) {
     }
 }
 
-const char* GevrekGetLastErrorMessage()
-{
+const char* GevrekGetLastErrorMessage(void) {
     return s_lastErrorMsg;
 }
+
+#ifdef GEVREK_DEBUG
+
+static GevrekLogSeverity s_currentLogLevel = GEVREK_LOG_INFO;
+static GevrekLogCallback s_logCallback = NULL;
+static void* s_logUserContext = NULL;
 
 void GevrekSetLogLevel(GevrekLogSeverity level) {
     s_currentLogLevel = level;
@@ -65,7 +72,6 @@ void GevrekLogSetCallback(GevrekLogCallback callback, void* userContext) {
     s_logUserContext = userContext;
 }
 
-#ifdef _DEBUG
 void GevrekLogInternal(GevrekLogSeverity severity, const char* file, int line, const char* fmt, ...) {
     if (severity < s_currentLogLevel) {
         return;
@@ -95,4 +101,5 @@ void GevrekLogInternal(GevrekLogSeverity severity, const char* file, int line, c
 
     fprintf(outputStream, "[%s] [%s:%d] %s\n", severityStr, file, line, messageBuffer);
 }
-#endif
+
+#endif // _DEBUG

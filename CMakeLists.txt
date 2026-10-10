@@ -13,3 +13,8 @@ add_library(GevrekLog STATIC ${SOURCES} ${HEADERS})
 target_include_directories(GevrekLog PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
+
+target_compile_definitions(GevrekLog PRIVATE
+    $<$<CONFIG:Debug>:_DEBUG>
+    $<$<CONFIG:Debug>:GEVREK_DEBUG>
+)
