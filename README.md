@@ -27,7 +27,7 @@ GevrekLog uses CMake. You can build it as a static library:
 
 ## API Reference
 
-### Logging (_DEBUG Mode Only)
+### Logging (GEVREK_DEBUG Mode Only)
 
 | Function / Macro | Description |
 | :--- | :--- |
