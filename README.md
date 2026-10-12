@@ -4,14 +4,35 @@
 
 ---
 
-## Features
+## Roadmap Checklist
 
-- **Debug-Only Logging:** Logging functionality and macros compile down to no-ops (`((void)0)`) in Release mode.
-- **Thread-Local Error State:** Safely store and retrieve engine errors per thread using `_Thread_local` storage.
-- **Flexible Sinks:** Built-in console output (stdout/stderr) with support for custom log callbacks and user contexts.
-- **Severity Levels:** `INFO`, `WARNING`, `ERROR`, and `FATAL`.
-- **Compile-Time Assertions:** Portable `GEVREK_STATIC_ASSERT` macro supporting C11 `_Static_assert` with safe fallback for older environments.
-- **Pure C11:** Zero external dependencies and clean modern C implementation.
+| Feature | Status | Scope |
+|---|---|---|
+| Debug-only logging macros | ✅ Implemented | Core |
+| Log severity levels (INFO, WARNING, ERROR, FATAL) | ✅ Implemented | Core |
+| Global log-level filtering | ✅ Implemented | Core |
+| Console output | ✅ Implemented | Core |
+| Custom logging callbacks | ✅ Implemented | Core |
+| Thread-local error state | ✅ Implemented | Core |
+| Error code definitions and descriptions | ✅ Implemented | Core |
+| Compile-time assertions | ✅ Implemented | Core |
+| Source file and line information | ❌ Not implemented | Core |
+| Function name in log output | ❌ Not implemented | Core |
+| Timestamps | ❌ Not implemented | Core |
+| Thread ID in log output | ❌ Not implemented | Optional feature |
+| File logging | ❌ Not implemented | Output module |
+| Multiple simultaneous output sinks | ❌ Not implemented | Output module |
+| Custom log formatting | ❌ Not implemented | Core |
+| Named logging categories | ❌ Not implemented | Core |
+| Per-category log-level filtering | ❌ Not implemented | Core |
+| Runtime log-level configuration | ⚙️ Partially implemented | Core |
+| Log rotation and file-size limits | ❌ Not implemented | Output module |
+| Rate-limited logging | ❌ Not implemented | Utility module |
+| Once-only logging | ❌ Not implemented | Utility module |
+| Assertion and verification macros | ❌ Not implemented | Utility module |
+| Configurable fatal-error handling | ❌ Not implemented | Core |
+| Error context and propagation | ❌ Not implemented | Core |
+| Error-state save and restore | ❌ Not implemented | Core |
 
 ---
 
